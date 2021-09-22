@@ -27,8 +27,17 @@ router.get('/', (req, res) => {
 })
 
 //GET /api/users/:id
-router.get('/:id', (req, res) => {
-    res.status(200).json(req.users)
+router.get('/:id', async (req, res) => {
+    const user = await Users.findById(req.params.id)
+
+    if (user) {
+      res.status(200).json({message: `User found: ${user.username}`, user})
+
+    } else {
+
+      res.status(404).json({message: `User not found`})
+    }
+    
 })
 
 //GET /api/users/:id/plants
