@@ -23,42 +23,35 @@ const sharedConfig = {
   seeds: { directory: './api/data/seeds' },
 }
 
-module.exports = {
-  development: {
-    ...sharedConfig,
-    connection: process.env.DEV_DATABASE_URL,
-  },
-  testing: {
-    ...sharedConfig,
-    connection: process.env.TESTING_DATABASE_URL,
-  },
-  production: {
-    ...sharedConfig,
-    connection: process.env.DATABASE_URL,
-    pool: { min: 2, max: 10 },
-  },
-}
-
-
 // module.exports = {
-
 //   development: {
-//     client: 'sqlite3',
-//     connection: {
-//       filename: './data/database.db3'
-//     },
-//     useNullAsDefault: true,
-//     migrations: {
-//       directory: './data/migrations',
-//     },
-//     seeds: {
-//       directory: './data/seeds',
-//     },
-//     pool: {
-//       afterCreate: (conn, done) => {
-//         //runs after a connection is made to the sqlite engine
-//         conn.run('PRAGMA foreign_keys = ON', done);
-//       }
-//     }
-//   }
-// };
+//     ...sharedConfig,
+//     connection: process.env.DEV_DATABASE_URL,
+//   },
+//   testing: {
+//     ...sharedConfig,
+//     connection: process.env.TESTING_DATABASE_URL,
+//   },
+//   production: {
+//     ...sharedConfig,
+//     connection: process.env.DATABASE_URL,
+//     pool: { min: 2, max: 10 },
+//   },
+// }
+
+
+module.exports = {
+
+  production: {
+  ...sharedConfig,
+  connection: process.env.DATABASE_URL,
+  pool: { min: 2, max: 10 },
+  },
+  useNullAsDefault: true,
+
+}
+  
+
+
+
+// 
