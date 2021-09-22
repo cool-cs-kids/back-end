@@ -1,4 +1,5 @@
 const express = require('express');
+const { findBy } = require('../users/users-model');
 const router = express.Router()
 const {checkId} = require('./plants-middleware')
 
@@ -33,10 +34,11 @@ router.get('/:id', checkId, async (req, res) =>{
     res.status(200).json(req.plant)
 })
 //PUT /api/plants/:id
-router.put('/:id', (req, res) => {
+router.put('/:id', async (req, res) => {
     Plants.update(req.params.id, req.body)
-        .then(plant => {
-            res.status(201).json({message: 'plant updated',plant})
+        .then(id => {
+            const plant_object = await Plants.findById(id)
+            res.status(201).json({message: 'plant updated', plant_object})
         })
         .catch((err) => {
             res.status(500).json(err);
