@@ -73,7 +73,7 @@ router.post('/:id/plants', (req, res) => {
     });
 });
 
-//PUT /api/user/:id
+//PUT /api/users/:id
 router.put('/:id', (req, res) => {
   Users.update(req.params.id, req.body)
     .then((users) => {
