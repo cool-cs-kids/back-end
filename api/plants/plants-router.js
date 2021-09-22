@@ -36,7 +36,7 @@ router.get('/:id', checkId, async (req, res) =>{
 router.put('/:id', (req, res) => {
     Plants.update(req.params.id, req.body)
         .then(plant => {
-            res.status(201).json({message: 'plant updated'})
+            res.status(201).json({message: 'plant updated',plant})
         })
         .catch((err) => {
             res.status(500).json(err);
