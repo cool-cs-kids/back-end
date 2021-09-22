@@ -9,7 +9,8 @@ const plantsRouter = require('./plants/plants-router')
 
 const sessionConfig = {
     name: 'plonts',
-    secret: 'the mitochondria is the powerhouse of the cell',
+
+    secret: process.env.session_secret || 'the mitochondria is the powerhouse of the cell',
     cookie: {
         maxAge: 1000 * 60,
         secure: false, // true in production

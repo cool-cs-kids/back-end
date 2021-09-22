@@ -5,7 +5,15 @@ const JWT_SECRET = require('../auth/secrets')
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken')
 
-//POST to /api/auth/register
+
+// for enterprise:
+// every api request needs to be logged (side service like splunk or a logging table
+// limit api requests with a rate limited (middlware)
+// if user is trying to login too many times, stop him AND ITS ONLY MEN 
+// analytics or some stuff like that
+// admin console to report to the leadrs
+// cron job to annoy every darn engineer on the planet
+// 
 router.post('/register', async (req, res) => {
     let user = req.body;
     const hash = bcrypt.hashSync(user.password, 8)
