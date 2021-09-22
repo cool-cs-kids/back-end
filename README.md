@@ -83,6 +83,10 @@ You will receive the `user object` back if successful.<br/>
 When you send .post or .put to create or edit a recipe, please make sure you are sending data to the database as structure below:
 (/api/plants/)<br/>
 
+```
+https://beta-water-my-plants.herokuapp.com/api/plants/
+```
+
 ```js
 {
 "user_id": 1, //ONLY IF EDITING, IF POSTING, NO ID NECESSARY
