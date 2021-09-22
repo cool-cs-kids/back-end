@@ -6,18 +6,29 @@ const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken')
 
 //POST to /api/auth/register
-router.post('/register', (req, res) => {
+router.post('/register', async (req, res) => {
     let user = req.body;
     const hash = bcrypt.hashSync(user.password, 8)
     user.password = hash;
-    User.add(user)
-        .then(userSaved => {
-            res.status(201).json(userSaved);
-        })
-        .catch(err => {
-            console.log('ERR', err)
-            res.status(500).json({message: 'Registration failed'})
-        })
+    const isUserAdded = await User.findBy({username: user.username})
+
+    if (isUserAdded) {
+      res.status(400).json({message: 'Username already exists'})
+      
+    
+    } else {
+
+      User.add(user)
+          .then(userSaved => {
+              res.status(201).json(userSaved);
+          })
+          .catch(err => {
+              console.log('ERR', err)
+              res.status(500).json({message: 'Registration failed'})
+          })
+
+
+    }
 })
 
 //POST to /api/auth/login
