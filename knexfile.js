@@ -11,7 +11,7 @@ require('dotenv').config()
     - password (in postgres:password, replace with the actual password of the postgres user)
     - database_name (use the real name of the development database you created in pgAdmin 4)
     - testing_database_name (use the real name of the testing database you created in pgAdmin 4) */
- 
+
 const pg = require('pg')
 
 if (process.env.DATABASE_URL) {
@@ -19,39 +19,23 @@ if (process.env.DATABASE_URL) {
 }
 const sharedConfig = {
   client: 'pg',
-  migrations: { directory: './api/data/migrations' },
-  seeds: { directory: './api/data/seeds' },
+  migrations: { directory: './data/migrations' },
+  seeds: { directory: './data/seeds' },
 }
-
-// module.exports = {
-//   development: {
-//     ...sharedConfig,
-//     connection: process.env.DEV_DATABASE_URL,
-//   },
-//   testing: {
-//     ...sharedConfig,
-//     connection: process.env.TESTING_DATABASE_URL,
-//   },
-//   production: {
-//     ...sharedConfig,
-//     connection: process.env.DATABASE_URL,
-//     pool: { min: 2, max: 10 },
-//   },
-// }
-
 
 module.exports = {
-
-  production: {
-  ...sharedConfig,
-  connection: process.env.DATABASE_URL,
-  pool: { min: 2, max: 10 },
+  development: {
+    ...sharedConfig,
+    connection: process.env.DEV_DATABASE_URL,
   },
-  useNullAsDefault: true,
-
+  testing: {
+    ...sharedConfig,
+    connection: process.env.TESTING_DATABASE_URL,
+  },
+  production: {
+    ...sharedConfig,
+    connection: process.env.DATABASE_URL,
+    pool: { min: 2, max: 10 },
+  },
 }
-  
 
-
-
-// 
