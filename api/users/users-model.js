@@ -32,7 +32,7 @@ function insertPlant(plant, user_id) {
 
 function update(id, changes){
     return db('users')
-        .where('users_id', id)
+        .where('user_id', id)
         .update(changes);
 }
 
