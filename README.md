@@ -1,12 +1,4 @@
-# routes
-
-"users": [https://beta-water-my-plants.herokuapp.com/api/users/,
-https://beta-water-my-plants.herokuapp.com/api/plants/,https://beta-water-my-plants.herokuapp.com/api/auth/register/,
-https://beta-water-my-plants.herokuapp.com/api/auth/login]
-
-# stretch
-
-use redoc to make documentation (or swagger???)
+# Documentation
 
 Emergency Backend (beta) for Water my Plants<br/>
 Base URL = https://beta-water-my-plants.herokuapp.com <br/>
@@ -125,7 +117,7 @@ You will receive the `plant object` back if successful.<br/>
 | h2oFrequency | Not Required |
 | image        | Not Required |
 
-### Recipes
+### Plants
 
 |  CRUD  | METHOD | ROUTE                 | Description             |
 | :----: | :----: | --------------------- | ----------------------- |
@@ -136,4 +128,9 @@ You will receive the `plant object` back if successful.<br/>
 
 #### in progress:
 
+seems to be working, but please test it out.
 | Delete | DELETE| /api/plants/:plant_id | delete plant |
+
+### Stretch
+
+use redoc to make documentation (or swagger???)
