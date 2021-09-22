@@ -6,7 +6,20 @@ const {restricted, checkIdUsers} = require('../auth/auth-middleware');
 router.get('/', (req, res) => {
     Users.find()
         .then(users => {
-            res.status(200).json(users);
+            // we need to whitelist this in the future
+            const clean_users = users.map(user => { 
+
+              return {
+                    user_id: user.user_id,
+                    username: user.username,
+                    phone_number: user.phone_number,
+                    
+                    
+                    
+                }  
+            
+            })
+            res.status(200).json(clean_users);
         })
         .catch(err => {
             res.status(500).json({message: 'Problem getting users'})

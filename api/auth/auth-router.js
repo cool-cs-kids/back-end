@@ -27,11 +27,12 @@ router.post('/login', (req, res) => {
     User.findBy({username})
     .first()
     .then(user => {
+      // we should pass the token, instead of the ID, and decrypt it in the front end
         if (user && bcrypt.compareSync(password, user.password)) {
             const token = generateToken(user);
             req.session.user = user
             res.status(200).json({message: `Welcome ${user.username}!`,
-            token,
+            token, user_id: user.id
         });
         } else {
             res.status(401).json({message: 'Invalid Credentials'})
