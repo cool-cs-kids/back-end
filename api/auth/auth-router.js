@@ -43,14 +43,15 @@ router.post('/login', (req, res) => {
             const token = generateToken(user);
             req.session.user = user
             res.status(200).json({message: `Welcome ${user.username}!`,
-            token, user_id: user.id
+            token, user_id: user.user_id
         });
         } else {
             res.status(401).json({message: 'Invalid Credentials'})
         }
     })
     .catch(error => {
-
+      console.log(error)
+        res.status(500).json({message: 'Login failed'})
     })
 })
 
