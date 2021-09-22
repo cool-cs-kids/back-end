@@ -35,9 +35,7 @@ router.post('/register', async (req, res) => {
 router.post('/login', (req, res) => {
     let {username, password} = req.body;
 
-    User.findBy({username})
-    .first()
-    .then(user => {
+    User.findBy({username}).then(user => {
       // we should pass the token, instead of the ID, and decrypt it in the front end
         if (user && bcrypt.compareSync(password, user.password)) {
             const token = generateToken(user);
