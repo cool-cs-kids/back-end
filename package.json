@@ -5,7 +5,20 @@
   "main": "index.js",
   "scripts": {
     "server": "nodemon index.js",
-    "start": "node index.js"
+    "start": "node index.js",
+    "migrate": "knex migrate:latest",
+    "rollback": "knex migrate:rollback",
+    "seed": "knex seed:run",
+    "migrateh": "heroku run knex migrate:latest -a build-week-water-my-plants",
+    "rollbackh": "heroku run knex migrate:rollback -a build-week-water-my-plants",
+    "databaseh": "heroku pg:psql -a build-week-water-my-plants",
+    "seedh": "heroku run knex seed:run -a build-week-water-my-plants",
+    "test": "cross-env NODE_ENV=testing jest --watchAll --verbose --runInBand",
+    "deploy": "git push heroku main"
+  },
+  "engines": {
+    "node": "14.16.0",
+    "npm": "6.14.11"
   },
   "repository": {
     "type": "git",
@@ -28,6 +41,7 @@
     "jsonwebtoken": "^8.5.1",
     "knex": "^0.95.11",
     "nodemon": "^2.0.12",
+    "pg": "^8.7.1",
     "sqlite3": "^5.0.2"
   }
 }

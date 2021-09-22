@@ -31,7 +31,7 @@ router.get('/:id/plants', (req,res) => {
 
 //POST /api/users
 router.post('/', (req, res) => {
-    Users.insert(req.body)
+    Users.add(req.body)
         .then(users => {
             res.status(201).json(users)
         })

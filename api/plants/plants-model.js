@@ -1,7 +1,7 @@
 const db = require('../../data/db-config.js');
 
 module.exports = {
-    find, findById, insert, update, remove
+    find, findById, add, update, remove
 }
 
 function find() {
@@ -9,26 +9,23 @@ function find() {
 }
 
 function findById(id) {
-    return db('plants').where('plants_id', id).first();
+    return db('plants').where('plant_id', id).first();
 }
 
-function insert(recipe) {
-    return db('plants')
-        .insert(id) //insert
-        .then(ids => {
-            return findById(ids[0])
-        })
+async function add(plant) {
+    const [id] = await db('plants').insert(plant, 'id')
+    return findById(id)
 }
 
 function update(id, changes) {
     return db('plants')
-        .where('plants_id', id)
+        .where('plant_id', id)
         .update(changes);
 }
 
 function remove(id) {
     return db('plants')
-    .where('plants_id', id)
+    .where('plant_id', id)
     .del()
 }
 

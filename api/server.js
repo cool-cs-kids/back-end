@@ -7,12 +7,6 @@ const usersRouter = require('./users/users-router')
 const authRouter = require('./auth/auth-router')
 const plantsRouter = require('./plants/plants-router')
 
-const server = express();
-
-server.use(helmet());
-server.use(express.json())
-server.use(cors())
-
 const sessionConfig = {
     name: 'plonts',
     secret: 'the mitochondria is the powerhouse of the cell',
@@ -25,11 +19,18 @@ const sessionConfig = {
     saveUninitialized: false,
 }
 
+const server = express();
 
+server.use(helmet());
+server.use(express.json())
+server.use(cors())
 server.use(session(sessionConfig))
+
+
 server.use('/api/auth', authRouter)
 server.use('/api/users', usersRouter)
 server.use('/api/plants', plantsRouter)
+
 server.get('/', (req, res) => {
     res.status(200).json({api: 'up'})
 });

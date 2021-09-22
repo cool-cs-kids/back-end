@@ -14,21 +14,24 @@ router.get('/', (req, res)=> {
             res.status(500).json({messsage: 'Problem retrieving plants'})
         })
 })
+
+//POST /api/plants/
+router.post('/', (req, res) => {
+    let plant = req.body
+    Plants.add(plant)
+        .then(plantSaved => {
+        res.status(201).json(plantSaved)
+        })
+        .catch(err => {
+            console.log('ERR', err)
+            res.status(500).json({message: 'Registration failed'})
+        })
+})
+
 //GET /api/plants/:id
 router.get('/:id', checkId, async (req, res) =>{
     res.status(200).json(req.plant)
 })
-
-//POST /api/plants/
-router.post('/', (req, res) => {
-    const plant = req.body
-    Plants.insert(plant)
-        .then((plant) => {
-            res.status(201).json(plant)
-        })
-        .catch(500).json({messsage: 'could not add plant'})
-})
-
 //PUT /api/plants/:id
 router.put('/:id', (req, res) => {
     Plants.update(req.params.id, req.body)

@@ -11,8 +11,8 @@ router.post('/register', (req, res) => {
     const hash = bcrypt.hashSync(user.password, 8)
     user.password = hash;
     User.add(user)
-        .then(user => {
-            res.status(201).json(user);
+        .then(userSaved => {
+            res.status(201).json(userSaved);
         })
         .catch(err => {
             console.log('ERR', err)
