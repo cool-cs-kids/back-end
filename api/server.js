@@ -32,7 +32,7 @@ server.use('/api/users', usersRouter)
 server.use('/api/plants', plantsRouter)
 
 server.get('/', (req, res) => {
-    res.status(200).json({api: 'up'})
+    res.status(200).json({api: 'up up and away! ballons!'})
 });
 
 module.exports = server;
