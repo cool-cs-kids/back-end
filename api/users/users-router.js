@@ -28,7 +28,8 @@ router.get('/', (req, res) => {
 
 //GET /api/users/:id
 router.get('/:id', async (req, res) => {
-    const user = await Users.findById(req.params.id)
+    try {
+      const user = await Users.findById(req.params.id)
 
     if (user) {
       res.status(200).json({message: `User found: ${user.username}`, user})
@@ -37,6 +38,10 @@ router.get('/:id', async (req, res) => {
 
       res.status(404).json({message: `User not found`})
     }
+    } catch (error) {
+      res.status(500).json({message: 'Problem getting user'})
+    }
+    
     
 })
 
